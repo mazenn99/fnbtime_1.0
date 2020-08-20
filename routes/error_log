@@ -1,0 +1,4 @@
+[18-Aug-2020 20:45:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/onpeqomeg1ob/public_html/mazen.fnbtime.com/routes/api.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/onpeqomeg1ob/public_html/mazen.fnbtime.com/routes/api.php on line 17

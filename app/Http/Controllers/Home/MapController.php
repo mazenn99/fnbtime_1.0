@@ -25,6 +25,10 @@ class MapController extends Controller
 
         $filter = $request->input('sort');
         $filter=urldecode($filter);
+        
+        $limit = $request->input('limit');
+        $limit=urldecode($limit);
+
 
 
         $query = Restaurant::select('restaurants.id','restaurants.name as restaurant_name','restaurants.description','restaurants.map_url',
@@ -36,19 +40,36 @@ class MapController extends Controller
             $query->where('cities.name','like','%'.$city.'%');
         }
 
-        if (!empty($search) && $search != "null" ){
+      
+
+
+        if(count($query->get()) == 0) {
+            $query = Restaurant::select('restaurants.id','restaurants.name as restaurant_name','restaurants.description','restaurants.map_url',
+            'restaurants.type_food','cities.name as city_name', 'countries.name as country_name')
+            ->join('cities','restaurants.city_id', '=', 'cities.id')
+            ->join('countries', 'restaurants.country_id', '=', 'countries.id');
+        }
+        
+          if (!empty($search) && $search != "null" ){
             $query->where('restaurants.name','like','%'.$search.'%');
         }
-
+        
         if(!empty($filter) && $filter != "null"){
             $query->where('type_food', 'LIKE', '%' . $filter . '%');
         }
-
-        $restaurants = $query->orderBy('restaurants.id', 'ASC')->paginate(PAGINATE_COUNT_IN_CLIENT_RES);
-
-
+        
+         
+        
+        
+        
+        if(!empty($limit) && $limit != "null"){
+            $query->limit($limit);
+            $restaurants = $query->inRandomOrder()->get();
+        }else{
+            $restaurants = $query->orderBy('restaurants.id', 'ASC')->paginate(8);
+        }
         $data=self::parseToXML($restaurants);
-
+        
         return response($data)->header('Content-Type', 'text/xml');
     }
 
@@ -72,27 +93,7 @@ class MapController extends Controller
 
 
 
-    public function Get_ById_ByCity(Request $request) {
-
-        $city = $request->input('city');
-        $city=urldecode($city);
-
-        $id = $request->input('id');
-
-        $restaurants =DB::table('restaurants')
-            ->join('cities','restaurants.city_id', '=', 'cities.id')
-            ->join('countries', 'restaurants.country_id', '=', 'countries.id')
-            ->select('restaurants.id','restaurants.name as restaurant_name','restaurants.description','restaurants.map_url','restaurants.type_food',
-                'cities.name as city_name', 'countries.name as country_name')
-            ->where('restaurants.id',$id)
-            ->where('cities.name','like','%'.$city.'%')
-            ->get();
-
-
-        $data=self::parseToXML($restaurants);
-
-        return response($data)->header('Content-Type', 'text/xml');
-    }
+   
 
 
     public function parseToXML($restaurants) {

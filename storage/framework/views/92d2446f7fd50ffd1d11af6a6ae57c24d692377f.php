@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Unauthorized</title>
+    <title>Not Found</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="{{asset('asset/FrontEnd/css')}}/errors.css" />
+    <link type="text/css" rel="stylesheet" href="<?php echo e(asset('asset/FrontEnd/css')); ?>/errors.css" />
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,12 +31,12 @@
         <div class="notfound-404">
             <h1>Oops!</h1>
             <h2>
-                Unauthorized to access
+                Not Found Page
             </h2>
         </div>
-        <a href="#">stop <br> Why you Are here ??? <br> you can't access this page</a>
+        <a href="#">Sorry , Not Found Page</a>
     </div>
 </div>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 </html>
+<?php /**PATH /home/onpeqomeg1ob/LaravelApp/resources/views/errors/404.blade.php ENDPATH**/ ?>

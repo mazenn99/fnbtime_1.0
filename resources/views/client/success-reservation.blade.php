@@ -94,7 +94,7 @@
                                         <li>
                                             <i class="fa fa-cutlery"></i>
                                             <h6>
-                                                <a href="{{route('res-info' , $resId)}}">{{$ResName}}</a>
+                                                {{--<a href="{{route('res-info' , $resId)}}">--}}{{$ResName}}{{--</a>--}}
                                             </h6>
                                         </li>
                                         <li>

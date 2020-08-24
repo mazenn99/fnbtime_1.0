@@ -1,9 +1,9 @@
-@extends('layouts.app')
-@section('style')
+
+<?php $__env->startSection('style'); ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/taras-d/images-grid/src/images-grid.min.css">
-@endsection
-@section('title' , $res->name)
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('title' , $res->name); ?>
+<?php $__env->startSection('content'); ?>
 
 
 
@@ -15,7 +15,7 @@
 
             <!-- start hero-header -->
             <div class="hero hero-detail"
-                 style="background-image:url('{{asset('asset/FrontEnd')}}/images/hero-header/hero-image.png');">
+                 style="background-image:url('<?php echo e(asset('asset/FrontEnd')); ?>/images/hero-header/hero-image.png');">
 
                 <div class="container">
 
@@ -28,38 +28,36 @@
                                 <div class="GridLex-col-8_sm-7_xs-12_xss-12">
                                     <div class="detail-header">
                                         <div class="detail-header-inner">
-                                            <h3 style="display: inline-block">{{$res->name}}</h3>
+                                            <h3 style="display: inline-block"><?php echo e($res->name); ?></h3>
                                             <p class="location"><i
-                                                    class="fa fa-map-marker"></i> {{$res->country->couName}}
-                                                <span> </span> {{$res->city->citName}}</p>
+                                                    class="fa fa-map-marker"></i> <?php echo e($res->country->couName); ?>
+
+                                                <span> </span> <?php echo e($res->city->citName); ?></p>
                                             <div class="rating-wrapper">
-                                                {{--<?php here all resrvation of this restaurnat
-                                                $num = getAllReservation($result['id']);
-                                                if (!empty($num)) { ?>
-                                                <span class="texting">  All Reservation : <?php
-                                                    echo $num ?></span>
-                                                <?php } ?>--}}
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @auth
+                                <?php if(auth()->guard()->check()): ?>
                                     <div class="GridLex-col-4_sm-4_xs-12_xss-12">
                                         <div class="text-right text-left-xs">
                                             <div class="btn-holder mt-5">
-                                                <button class="btn btn-light anchor-alt" data-value="{{$res->id}}"
+                                                <button class="btn btn-light anchor-alt" data-value="<?php echo e($res->id); ?>"
                                                         id="favorite">
-                                                        @if(\App\Model\Favorite::where('user_id' , \Illuminate\Support\Facades\Auth::id())
-                                                                                ->where('res_id' , $res->id)->count())
-                                                        {{'Saved'}}
-                                                        @else
-                                                            {{'Added To Favorite'}}
-                                                        @endif
+                                                        <?php if(\App\Model\Favorite::where('user_id' , \Illuminate\Support\Facades\Auth::id())
+                                                                                ->where('res_id' , $res->id)->count()): ?>
+                                                        <?php echo e('Saved'); ?>
+
+                                                        <?php else: ?>
+                                                            <?php echo e('Added To Favorite'); ?>
+
+                                                        <?php endif; ?>
                                                     <i class="fa fa-heart ml-2"></i></button>
                                             </div>
                                         </div>
                                     </div>
-                                @endauth
+                                <?php endif; ?>
                             </div>
 
                         </div>
@@ -76,7 +74,7 @@
 
                     <ol class="breadcrumb">
 
-                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
                         <li class="active">Restaurant detail</li>
 
                     </ol>
@@ -143,32 +141,32 @@
                                         <h3><span>support in</span></h3>
                                     </div>
 
-                                    @if(!empty($res->appsDelivery->mrsool))
-                                        <a href="{{$res->appsDelivery->mrsool}}"
-                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/mrsool.png"></a> <br>
-                                    @endif
+                                    <?php if(!empty($res->appsDelivery->mrsool)): ?>
+                                        <a href="<?php echo e($res->appsDelivery->mrsool); ?>"
+                                           target="_blank"><img src="<?php echo e(asset('asset/FrontEnd')); ?>/images/mrsool.png"></a> <br>
+                                    <?php endif; ?>
 
-                                    @if(!empty($res->appsDelivery->logmaty))
-                                        <a href="{{$res->appsDelivery->logmaty}}"
-                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/logmaty.png"></a> <br>
-                                    @endif
+                                    <?php if(!empty($res->appsDelivery->logmaty)): ?>
+                                        <a href="<?php echo e($res->appsDelivery->logmaty); ?>"
+                                           target="_blank"><img src="<?php echo e(asset('asset/FrontEnd')); ?>/images/logmaty.png"></a> <br>
+                                    <?php endif; ?>
 
-                                    @if(!empty($res->appsDelivery->hungerStation))
-                                        <a href="{{$res->appsDelivery->hungerStation}}"
+                                    <?php if(!empty($res->appsDelivery->hungerStation)): ?>
+                                        <a href="<?php echo e($res->appsDelivery->hungerStation); ?>"
                                            target="_blank"><img
-                                                src="{{asset('asset/FrontEnd')}}/images/hungerstation.png"></a> <br>
-                                    @endif
+                                                src="<?php echo e(asset('asset/FrontEnd')); ?>/images/hungerstation.png"></a> <br>
+                                    <?php endif; ?>
 
-                                    @if(!empty($res->appsDelivery->jahiz))
-                                        <a href="{{$res->appsDelivery->jahiz}}"
-                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/jahiz.png"></a> <br>
-                                    @endif
+                                    <?php if(!empty($res->appsDelivery->jahiz)): ?>
+                                        <a href="<?php echo e($res->appsDelivery->jahiz); ?>"
+                                           target="_blank"><img src="<?php echo e(asset('asset/FrontEnd')); ?>/images/jahiz.png"></a> <br>
+                                    <?php endif; ?>
 
-                                    @if(!empty($res->appsDelivery->careemNow))
-                                        <a href="{{$res->appsDelivery->careemNow}}"
-                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/careemNow.png"></a>
+                                    <?php if(!empty($res->appsDelivery->careemNow)): ?>
+                                        <a href="<?php echo e($res->appsDelivery->careemNow); ?>"
+                                           target="_blank"><img src="<?php echo e(asset('asset/FrontEnd')); ?>/images/careemNow.png"></a>
                                         <br>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </div>
                                 <div class="row">
@@ -244,7 +242,7 @@
                                                     <div class="GridLex-gap-30">
 
                                                             <div class="btn-holder mt-5">
-                                                                <a href="{{asset('images/res-images/menu') . '/' . $res->menu}}"
+                                                                <a href="<?php echo e(asset('images/res-images/menu') . '/' . $res->menu); ?>"
                                                                    class="btn btn-primary " target="_blank"><i class="fa fa-bars mr-3" aria-hidden="true"></i>Click to see Menu</a>
                                                             </div>
 
@@ -304,8 +302,8 @@
 
                             <h5 class="text-center">Reserve your table</h5> <!-- add class text-center -->
                             <div class="form-wrapper">
-                                <form method="POST" action="{{route('reserve' , $res->id)}}">
-                                    @csrf
+                                <form method="POST" action="<?php echo e(route('reserve' , $res->id)); ?>">
+                                    <?php echo csrf_field(); ?>
                                     <div class="row">
 
                                         <div class="col-xs-12 col-sm-12">
@@ -314,38 +312,66 @@
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-user"></i></span>
                                                 <input type="text" name="FullName" placeholder="Full Name"
-                                                       class="form-control" value="{{old('FullName')}}" required/>
-                                                @error('FullName')
-                                                <small class="form-text text-danger">{{$message}}</small>
-                                                @enderror
+                                                       class="form-control" value="<?php echo e(old('FullName')); ?>" required/>
+                                                <?php $__errorArgs = ['FullName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="form-text text-danger"><?php echo e($message); ?></small>
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             </div>
 
                                             <div class="input-group mb-15">
                                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                                                 <input type="email" name="email" placeholder="Email Address"
-                                                       class="form-control" value="{{old('email')}}" required/>
-                                                @error('email')
-                                                <small class="form-text text-danger">{{$message}}</small>
-                                                @enderror
+                                                       class="form-control" value="<?php echo e(old('email')); ?>" required/>
+                                                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="form-text text-danger"><?php echo e($message); ?></small>
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             </div>
 
                                             <div class="input-group mb-15">
                                                 <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-earphone"></i></span>
                                                 <input type="text" name="phone" placeholder="Phone Number"
-                                                       class="form-control" value="{{old('phone')}}" required/>
-                                                @error('phone')
-                                                <small class="form-text text-danger">{{$message}}</small>
-                                                @enderror
+                                                       class="form-control" value="<?php echo e(old('phone')); ?>" required/>
+                                                <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="form-text text-danger"><?php echo e($message); ?></small>
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             </div>
 
                                             <div class="input-group mb-15">
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                 <input type="date" name="date" placeholder="dd/mm/yyyy"
-                                                       class="form-control" value="{{old('date')}}" required/>
-                                                @error('date')
-                                                <small class="form-text text-danger">{{$message}}</small>
-                                                @enderror
+                                                       class="form-control" value="<?php echo e(old('date')); ?>" required/>
+                                                <?php $__errorArgs = ['date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="form-text text-danger"><?php echo e($message); ?></small>
+                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             </div>
 
                                             <div class="row gap-15">
@@ -356,11 +382,18 @@
                                                     <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-time"></i></span>
                                                         <input type="time" name="time" placeholder="hh-mm"
-                                                               class="form-control" value="{{old('time')}}" required/>
+                                                               class="form-control" value="<?php echo e(old('time')); ?>" required/>
 
-                                                        @error('time')
-                                                        <small class="form-text text-danger">{{$message}}</small>
-                                                        @enderror
+                                                        <?php $__errorArgs = ['time'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                        <small class="form-text text-danger"><?php echo e($message); ?></small>
+                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                                                     </div>
 
@@ -372,33 +405,40 @@
                                                         <span class="input-group-addon"><i
                                                                 class="fa fa-male"></i></span>
                                                         <input type="number" name="persons" placeholder="Persons"
-                                                               class="form-control" value="{{old('persons')}}"
+                                                               class="form-control" value="<?php echo e(old('persons')); ?>"
                                                                required/>
-                                                        @error('persons')
-                                                        <small class="form-text text-danger">{{$message}}</small>
-                                                        @enderror
+                                                        <?php $__errorArgs = ['persons'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                        <small class="form-text text-danger"><?php echo e($message); ?></small>
+                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                     </div>
 
                                                 </div>
                                                 <div class="working-status"></div>
                                             </div>
-                                            {{-- this to check if user verify on system or not --}}
-                                            @auth
-                                                @if(@auth::user()->hasVerifiedEmail())
+                                            
+                                            <?php if(auth()->guard()->check()): ?>
+                                                <?php if(@auth::user()->hasVerifiedEmail()): ?>
                                                     <div class="text-center">
                                                         <button class="btn btn-primary btn-block">Reserve now</button>
                                                     </div>
-                                                @else
+                                                <?php else: ?>
                                                     <p class='text-center text-capitalize text-danger'>Please Verify
                                                         You're Email</p>
-                                                @endif
-                                            @endauth
+                                                <?php endif; ?>
+                                            <?php endif; ?>
 
-                                            @guest()
-                                                <p class='text-primary text-center'><a href='{{route('login')}}'
+                                            <?php if(auth()->guard()->guest()): ?>
+                                                <p class='text-primary text-center'><a href='<?php echo e(route('login')); ?>'
                                                                                        target='_blank'>Please
                                                         Register or login</a></p>
-                                            @endguest
+                                            <?php endif; ?>
 
 
                                         </div>
@@ -443,24 +483,24 @@
 
     <!-- start Footer Wrapper -->
     <div class="footer-wrapper scrollspy-footer">
-        @endsection
-        @section('script')
+        <?php $__env->stopSection(); ?>
+        <?php $__env->startSection('script'); ?>
 
-            <script type="text/javascript" src="{{asset('asset/FrontEnd')}}/js/map/restaurant_script.js"></script>
+            <script type="text/javascript" src="<?php echo e(asset('asset/FrontEnd')); ?>/js/map/restaurant_script.js"></script>
 
-            <script type="text/javascript" src="{{asset('asset/FrontEnd')}}/js/images-grid.js"></script>
-            <script defer type="text/javascript" src="{{asset('asset/FrontEnd')}}/js/infobox.js"></script>
+            <script type="text/javascript" src="<?php echo e(asset('asset/FrontEnd')); ?>/js/images-grid.js"></script>
+            <script defer type="text/javascript" src="<?php echo e(asset('asset/FrontEnd')); ?>/js/infobox.js"></script>
             <!-- load the images to the slider -->
-            @auth
+            <?php if(auth()->guard()->check()): ?>
             <script>
                 $('#favorite').on('click' , function(e) {
                     let btnVal = $(this).data('value');
                     if(btnVal != 0) {
                         $.ajax({
-                            url : '{{route("favorite")}}',
+                            url : '<?php echo e(route("favorite")); ?>',
                             method : 'POST',
                             data : {
-                                '_token' : "{{csrf_token()}}",
+                                '_token' : "<?php echo e(csrf_token()); ?>",
                                 'value' : btnVal,
                             } ,
                             success:function(success) {
@@ -474,5 +514,6 @@
                     }
                 });
             </script>
-            @endauth
-@endsection
+            <?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/onpeqomeg1ob/LaravelApp/resources/views/client/restaurant-info.blade.php ENDPATH**/ ?>

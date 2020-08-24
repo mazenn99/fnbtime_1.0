@@ -392,7 +392,7 @@ class HomePageController extends Controller
             ->with(['city' => function($q) {
                 $q->select('id' , 'name as citName');
             }])
-            ->select('id', 'name', 'country_id', 'city_id' , 'picture')
+            ->select('id', 'name', 'country_id', 'city_id' , 'menu')
             ->where('name', 'LIKE', '%' . $search . '%')->orderBy('name')->limit(2)->get();
         return response()->json($res);
     }

@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('title' , 'Restaurant')
-@section('content')
+<?php $__env->startSection('title' , 'Restaurant'); ?>
+<?php $__env->startSection('content'); ?>
     <!-- start Container Wrapper -->
     <div class="map-holder" style="display: none;">
                 <div id="hotel-detail-map" data-lat="25.19739" data-lon="55.28821" style="width: 100%; height: 480px;"></div>
@@ -14,7 +13,7 @@
 
             <!-- start hero-header -->
             <div class="hero hero-sm"
-                 style="background-image:url('{{asset('asset/FrontEnd')}}/images/hero-header/hero-image.png');">
+                 style="background-image:url('<?php echo e(asset('asset/FrontEnd')); ?>/images/hero-header/hero-image.png');">
                 <div class="container">
 
                     <div class="home-search-form mt-20-xs">
@@ -23,7 +22,7 @@
 
                         <div class="home-search-form" style="display: inline-block;text-align: center">
 
-                            <form action="{{route('searchFrom')}}" method="GET">
+                            <form action="<?php echo e(route('searchFrom')); ?>" method="GET">
                                 <div class="form-group location-form">
                                     <input type="text" id="search" name="search" class="form-control"
                                            placeholder="What would you like to eat?">
@@ -50,7 +49,7 @@
 
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
-                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
                         <li class="active">Restaurant page</li>
                     </ol>
                 </div>
@@ -69,14 +68,14 @@
                                                     
 
 
-                                                @foreach(\App\Model\TypeFood::orderBy('name' , 'ASC')->get() as $key => $filter)
+                                                <?php $__currentLoopData = \App\Model\TypeFood::orderBy('name' , 'ASC')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $filter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                      <form action="?sort" method="GET">
                                                         <div class="checkbox-block font-icon-checkbox">
-                                                            <input class="filterType checkbox" id="{{$filter->name}}" value="{{$filter->name}}"  type="checkbox">
-                                                            <label for="{{$filter->name}}">{{$filter->name}}</label>
+                                                            <input class="filterType checkbox" id="<?php echo e($filter->name); ?>" value="<?php echo e($filter->name); ?>"  type="checkbox">
+                                                            <label for="<?php echo e($filter->name); ?>"><?php echo e($filter->name); ?></label>
                                                         </div>
                                                     </form>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                             </div>
 
@@ -102,17 +101,19 @@
                                                 <div class="GridLex-col-6_sm-12_xs-12">
                                                     <nav>
                                                         <ul class="pagination pagination-text-center-sm mb-5-xs">
-                                                            @if(isset($result) && count($result) > 0)
-                                                                {{$result->appends(Request::except('page'))->links()}}
-                                                            @else
-                                                                @if(isset($res) && $res->total() > 0)
-                                                                 {{$res->appends(Request::except('page'))->links()}}
-                                                                @else
+                                                            <?php if(isset($result) && count($result) > 0): ?>
+                                                                <?php echo e($result->appends(Request::except('page'))->links()); ?>
+
+                                                            <?php else: ?>
+                                                                <?php if(isset($res) && $res->total() > 0): ?>
+                                                                 <?php echo e($res->appends(Request::except('page'))->links()); ?>
+
+                                                                <?php else: ?>
                                                                 <div class="text-danger text-center text-capitalize">sorry no data to show <br>
                                     
                                                                 </div>
-                                                                 @endif
-                                                            @endif
+                                                                 <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </ul>
                                                     </nav>
 
@@ -121,13 +122,13 @@
                                             </div>
 
                                         </div>
-                                    @if(request('search') || $res->total() < 5)
+                                    <?php if(request('search') || $res->total() < 5): ?>
                                         <div class="text-danger text-center text-capitalize">
-                                            <a href="{{route('restaurant')}}"
+                                            <a href="<?php echo e(route('restaurant')); ?>"
                                                class="text-capitalize btn btn-primary btn-sm text-center">click to show all
                                                 restaurant</a>
                                         </div>                                       
-                                    @endif
+                                    <?php endif; ?>
                     </div>
 
                 </div>
@@ -136,12 +137,12 @@
 
         </div>
         <!-- end Main Wrapper -->
-    @endsection
-    @section('script')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('script'); ?>
         <!-- start Footer Wrapper -->
-                <script type="text/javascript" src="{{asset('asset/FrontEnd')}}/js/map/list_script.js"></script>
+                <script type="text/javascript" src="<?php echo e(asset('asset/FrontEnd')); ?>/js/map/list_script.js"></script>
             <script>
-                {{--This to filter cuisine type  --}}
+                
 
                 var queryParams = new URLSearchParams(window.location.search);
 
@@ -161,7 +162,7 @@
                         $('#'+queryParams.get('sort')).prop('checked', true);
                     }
 
-                {{--This to filter cuisine type  --}}
+                
             </script>
             
               <script>
@@ -169,7 +170,7 @@
                         let search = $(this).val();
                         if(search != '') {
                             $.ajax({
-                                 url: '{{route("suggestion")}}',
+                                 url: '<?php echo e(route("suggestion")); ?>',
                                 method: 'GET',
                                 data:{search : search},
                                 success:function (response) {
@@ -202,4 +203,6 @@
                         $("#show-list-search").html('');
                     })
                 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/onpeqomeg1ob/LaravelApp/resources/views/client/restaurant.blade.php ENDPATH**/ ?>

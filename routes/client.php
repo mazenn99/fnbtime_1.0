@@ -45,13 +45,16 @@ Route::namespace('Home')->group(function() {
     Route::post('get-city-list','DropDownControllerForCountryAndCity@getCityList');
     Route::post('saveRestaurant' , 'HomePageController@saveToFavorite')->name('favorite');
     Route::post('deleteRes' , 'HomePageController@deleteFav')->name('del-fav');
-    Route::get('api/restaurant', 'MapController@Get_ById');
+
+Route::get('api/restaurant', 'MapController@Get_ById');
 
 Route::get('api/restaurants/query', 'MapController@Get_Restaurants');
 
-Route::get('api/restaurant/city', 'MapController@Get_ById_ByCity');
+Route::get('api/restaurant/city', 'MapController@Get_Restaurants');
 
 Route::get('images', 'MapController@Get_image');
+
+
 });
 
 

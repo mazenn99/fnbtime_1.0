@@ -1,33 +1,34 @@
-@extends('layouts.app')
-@section('title' , config('app.name'))
-@section('content')
+
+<?php $__env->startSection('title' , config('app.name')); ?>
+<?php $__env->startSection('content'); ?>
 
     <!-- start Container Wrapper -->
     <div class="container-wrapper">
-        @auth
-            @if(empty(Auth()->user()->email_verified_at))
+        <?php if(auth()->guard()->check()): ?>
+            <?php if(empty(Auth()->user()->email_verified_at)): ?>
                 <div class="alert alert-dismissible text-center alert-success margin-0">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
 
-                    {!!  "Please Verify Email Address " . "<strong>".Auth()->user()->email."</strong>" !!}
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
+                    <?php echo "Please Verify Email Address " . "<strong>".Auth()->user()->email."</strong>"; ?>
+
+                    <form class="d-inline" method="POST" action="<?php echo e(route('verification.resend')); ?>">
+                        <?php echo csrf_field(); ?>
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">click here to request
                             another link
                         </button>
                         .
                     </form>
-                    @if (session('resent'))
+                    <?php if(session('resent')): ?>
                         <div class="text-dark" role="alert">
                             A fresh verification link has been sent to your email address
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
-        @endif
-    @endauth
-    {{-- message successfully logout --}}
-    @include('client._partial.success')
-    {{-- message successfully logout --}}
+        <?php endif; ?>
+    <?php endif; ?>
+    
+    <?php echo $__env->make('client._partial.success', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
 
 <!-- map container which is hidden but needed for geocoding and places api usage -->
     <div class="map-holder" style="display: none;">
@@ -43,15 +44,15 @@
             <div class="carousel-inner" role="listbox">
 
                <div class="item active img-bg"
-                         style="background-image:url('{{asset('asset/FrontEnd')}}/images/hero-header-slider/hero-image.png');">
+                         style="background-image:url('<?php echo e(asset('asset/FrontEnd')); ?>/images/hero-header-slider/hero-image.png');">
                     </div>
 
                     <div class="item img-bg"
-                         style="background-image:url('{{asset('asset/FrontEnd')}}/images/hero-header-slider/hero-image.png');">
+                         style="background-image:url('<?php echo e(asset('asset/FrontEnd')); ?>/images/hero-header-slider/hero-image.png');">
                     </div>
 
                     <div class="item img-bg"
-                         style="background-image:url('{{asset('asset/FrontEnd')}}/images/hero-header-slider/hero-image.png');">
+                         style="background-image:url('<?php echo e(asset('asset/FrontEnd')); ?>/images/hero-header-slider/hero-image.png');">
                     </div>
 
 
@@ -72,7 +73,7 @@
 
                         <div class="home-search-form" style="display: inline-block;text-align: center">
 
-                            <form action="{{route('searchFrom')}}" method="GET" style="margin-bottom: 5px;">
+                            <form action="<?php echo e(route('searchFrom')); ?>" method="GET" style="margin-bottom: 5px;">
 
                                 <div class="form-group location-form">
                                     <input type="text" id="search" name="search" class="form-control"
@@ -126,7 +127,7 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="{{route('restaurant')}}" class="btn btn-primary">More Restaurants</a>
+                    <a href="<?php echo e(route('restaurant')); ?>" class="btn btn-primary">More Restaurants</a>
                 </div>
 
             </div>
@@ -250,16 +251,16 @@
     <!-- start Footer Wrapper -->
     <div class="footer-wrapper scrollspy-footer">
 
-            @endsection
-            @section('script')
+            <?php $__env->stopSection(); ?>
+            <?php $__env->startSection('script'); ?>
 
-                <script type="text/javascript" src="{{asset('asset/FrontEnd')}}/js/map/index_script.js"></script>
+                <script type="text/javascript" src="<?php echo e(asset('asset/FrontEnd')); ?>/js/map/index_script.js"></script>
                 <script>
                    $("#search").keyup(function () {
                         let search = $(this).val();
                         if(search != '') {
                             $.ajax({
-                                 url: '{{route("suggestion")}}',
+                                 url: '<?php echo e(route("suggestion")); ?>',
                                 method: 'GET',
                                 data:{search : search},
                                 success:function (response) {
@@ -292,4 +293,6 @@
                         $("#show-list-search").html('');
                     })
                 </script>
-            @endsection
+            <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/onpeqomeg1ob/LaravelApp/resources/views/client/index.blade.php ENDPATH**/ ?>

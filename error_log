@@ -767,3 +767,4 @@ Stack trace:
 [20-Aug-2020 16:50:08 UTC] PHP Warning:  Unterminated comment starting line 6 in /home/onpeqomeg1ob/public_html/routes/api.php on line 6
 [20-Aug-2020 16:50:10 UTC] PHP Warning:  Unterminated comment starting line 6 in /home/onpeqomeg1ob/public_html/routes/api.php on line 6
 [20-Aug-2020 17:08:04 UTC] PHP Warning:  Unterminated comment starting line 6 in /home/onpeqomeg1ob/public_html/routes/api.php on line 6
+[20-Aug-2020 18:17:47 UTC] PHP Warning:  Unterminated comment starting line 6 in /home/onpeqomeg1ob/LaravelApp/routes/api.php on line 6

@@ -55,8 +55,14 @@
 
                                         <li>
                                             <span class="block text-muted text-uppercase">Restaurant</span>
-                                            <h6><a href="{{route('res-info' , $result->restaurant->id)}}"
-                                                   target="_blank">{{$result->restaurant->name}}</a></h6>
+                                            <h6>{{--<a href="{{route('res-info' , $result->restaurant->id)}}"
+                                                   target="_blank">--}}{{$result->restaurant->name}}</h6>
+                                        </li>
+                                        
+                                        <li>
+                                            <span class="block text-muted text-uppercase">Reservation Name</span>
+                                            <h6>{{--<a href="{{route('res-info' , $result->restaurant->id)}}"
+                                                   target="_blank">--}}{{$result->name}}</h6>
                                         </li>
 
                                         <li>
@@ -127,8 +133,8 @@
                                                                             <span
                                                                                 class="block text-muted text-uppercase">Restaurant</span>
                                                 <h6>
-                                                    <h6><a href="{{route('res-info' , $result->restaurant->id)}}"
-                                                           target="_blank">{{$result->restaurant->name}}</a></h6>
+                                                    <h6>{{--<a href="{{route('res-info' , $result->restaurant->id)}}"
+                                                           target="_blank">--}}{{$result->restaurant->name}}{{--</a>--}}</h6>
                                                 </h6>
                                             </li>
 

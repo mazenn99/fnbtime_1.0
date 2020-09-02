@@ -17,15 +17,15 @@ class EditInformationAdmin extends Controller
 
     public function update(EditAdminInformationRequest $request) {
         $admin =  Admins::findOrFail(Auth::guard('admin')->user()->id);
-        $photo = '';
+        $photo = $admin->photo;
         if($request->hasFile('photo')) {
             $photo = $request->file('photo');
             if(!(is_null($admin->photo))) {
-                $path = public_path() . '\adminFrontEnd\images\avatar\\' . $admin->photo;
+                $path = 'asset/adminFrontEnd/images/avatar/' . $admin->photo;
                 unlink($path);
-                $photo = $this->saveImage($request->file('photo') , 'adminFrontEnd/images/avatar');
+                $photo = $this->saveImage($request->file('photo') , 'asset/adminFrontEnd/images/avatar');
             } else {
-                $photo = $this->saveImage($request->file('photo'), 'adminFrontEnd/images/avatar');
+                $photo = $this->saveImage($request->file('photo'), 'asset/adminFrontEnd/images/avatar');
             }
         }
         $admin->update([

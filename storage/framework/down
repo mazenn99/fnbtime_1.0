@@ -1,8 +1,6 @@
 {
-    "time": 1598110430,
-    "message": "Upgrade System",
-    "retry": 60,
-    "allowed": [
-        "50.61.5.50"
-    ]
+    "time": 1598817655,
+    "message": null,
+    "retry": null,
+    "allowed": []
 }

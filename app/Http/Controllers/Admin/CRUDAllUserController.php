@@ -41,7 +41,7 @@ class CRUDAllUserController extends Controller
      */
     public function create()
     {
-        return view('Admin.users.create');
+        return view('admin.users.create');
     }
 
     /**

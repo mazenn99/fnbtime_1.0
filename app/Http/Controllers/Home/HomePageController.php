@@ -58,7 +58,8 @@ class HomePageController extends Controller
 
     public function faq()
     {
-        return view('client.faq');
+                return view('client.faq');
+
     }
 
     /*

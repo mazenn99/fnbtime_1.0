@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('title' , 'FAQ')
 @section('content')
@@ -37,7 +38,7 @@
 
                                 <div class="faq-item">
 
-                                    <h4><span class="text-primary mr-5">Q.</span> What is this faq?</h4>
+                                    <h4><span class="text-primary mr-5">Q.</span> What is this faq ?</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis
                                         deserunt ea error eveniet exercitationem illo impedit laudantium nemo, odio odit
                                         pariatur, quae quia veniam voluptatum. A amet aspernatur consequatur, consequuntur

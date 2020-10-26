@@ -74,5 +74,9 @@ class User extends Authenticatable implements MustVerifyEmail
             "<button class='btn btn-danger' disabled>not verified</button>" :
             "<button class='btn btn-success' disabled>verified</button>";
     }
+    
+    public function usersRestaurant() {
+        return $this->belongsToMany(\App\Model\Restaurant::class , 'users_restaurants' , 'users_id' , 'res_id');
+    }
 
 }

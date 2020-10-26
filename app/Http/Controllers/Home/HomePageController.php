@@ -58,8 +58,7 @@ class HomePageController extends Controller
 
     public function faq()
     {
-                return view('client.faq');
-
+        return view('client.faq');
     }
 
     /*
@@ -204,11 +203,20 @@ class HomePageController extends Controller
             $q->select('res_id', 'mrsool', 'logmaty', 'hungerStation', 'jahiz', 'careemNow');
         }])->findOrFail($res);
 
+        $res->increment('views');
+        
         $otherRes = Restaurant::with(['country' => function ($q) {
             $q->select('id', 'name as couName');
         }, 'city' => function ($q) {
             $q->select('id', 'name as citName');
         }])->latest()->limit(4)->get();
+        
+        if(Auth::user()) {
+            $user = \App\User::select('id')->find(Auth::id());
+            if(!($user->usersRestaurant()->where('res_id' , $res->id)->exists())) {
+                \App\User::find(Auth::id())->usersRestaurant()->attach($res->id);
+            }
+        }
         return view('client.restaurant-info', compact('res', 'otherRes'));
     }
 

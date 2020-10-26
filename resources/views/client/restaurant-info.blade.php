@@ -145,29 +145,28 @@
 
                                     @if(!empty($res->appsDelivery->mrsool))
                                         <a href="{{$res->appsDelivery->mrsool}}"
-                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/mrsool.png"></a> <br>
+                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/mrsool.png"></a> 
                                     @endif
 
                                     @if(!empty($res->appsDelivery->logmaty))
                                         <a href="{{$res->appsDelivery->logmaty}}"
-                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/logmaty.png"></a> <br>
+                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/logmaty.png"></a> 
                                     @endif
 
                                     @if(!empty($res->appsDelivery->hungerStation))
                                         <a href="{{$res->appsDelivery->hungerStation}}"
                                            target="_blank"><img
-                                                src="{{asset('asset/FrontEnd')}}/images/hungerstation.png"></a> <br>
+                                                src="{{asset('asset/FrontEnd')}}/images/hungerstation.png"></a> 
                                     @endif
 
                                     @if(!empty($res->appsDelivery->jahiz))
                                         <a href="{{$res->appsDelivery->jahiz}}"
-                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/jahiz.png"></a> <br>
+                                           target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/jahiz.png"></a> 
                                     @endif
 
                                     @if(!empty($res->appsDelivery->careemNow))
                                         <a href="{{$res->appsDelivery->careemNow}}"
                                            target="_blank"><img src="{{asset('asset/FrontEnd')}}/images/careemNow.png"></a>
-                                        <br>
                                     @endif
 
                                 </div>

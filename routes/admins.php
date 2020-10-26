@@ -43,5 +43,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
     Route::post('booking/search-inputAllBooking' , 'BookingController@searchAllBooking')->name('search-input-for-allBooking');
     Route::get('booking/allbooking' , 'BookingController@show')->name('allBooking');
     ######### end Manage All Booking #########
+    
+    ######### Users -> Restaurant views ########
+    Route::resource('users_restaurant' , 'usersRestaurantController');
+    Route::get('spicific_user/{user}' , 'usersRestaurantController@showSpicificUserRestaurant')->name('spicific-users');
+    ######### Users -> Restaurant views ########  
+    
 });
 

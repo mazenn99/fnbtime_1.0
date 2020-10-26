@@ -23,8 +23,8 @@ class SendMailContactUsController extends Controller
 
     public function sendMailContact(ContactUsRequest $request) {
         Mail::to(config('mail.infoMail'))->send(new ContactUs([
-            'email' => $request->input('email'),
-            'message' => $request->input('message')
+            'email'     => $request->input('email'),
+            'message'   => $request->input('message')
         ]));
         return redirect()->back()->with(['success' => 'Successfully Send You\'re message']);
     }

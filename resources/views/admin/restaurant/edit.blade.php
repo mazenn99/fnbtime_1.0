@@ -4,10 +4,27 @@
     <div class="container-fluid">
         <div class="card m-t-35 m-b-35">
             <div class="card-header">
-                Add new Restaurant
+                Update Restaurant  {{$restaurant->name}}
             </div>
             @include('admin.layout._partial._successLogout')
             <div class="card-body card-block">
+                <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="text-input" class=" form-control-label">Restaurant Contract Link 
+                                @if(\App\Model\ContractRestaurant::select('approve_at')->where('res_id' , $restaurant->id)->first()->approve_at != NULL)
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                @endif
+                            </label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="text-input" name="name"
+                                   class="form-control" disabled 
+                                   value="{{route('contact-page' , \App\Model\ContractRestaurant::select('hash')->where('res_id' , $restaurant->id)->first()->hash)}}" >
+                            @error('name')
+                                <small class="form-text text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                    </div>
                 <form action="{{route('restaurant.update' , $restaurant->id)}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -33,6 +50,32 @@
                                    class="form-control" required>
                             <small class="form-text text-muted">italian , arabian , indian</small>
                             @error('type_food')
+                                <small class="form-text text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="manager_number" class=" form-control-label">Manager Number</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="manager_number" value="{{$restaurant->manager_number}}" name="manager_number"
+                                   placeholder="Please Enter the manager number"
+                                   class="form-control" >
+                            @error('manager_number')
+                                <small class="form-text text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="manager_email" class=" form-control-label">Manager Email</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="manager_email" value="{{$restaurant->manager_email}}" name="manager_email"
+                                   placeholder="Please enter the manager email"
+                                   class="form-control" >
+                            @error('manager_email')
                                 <small class="form-text text-danger">{{$message}}</small>
                             @enderror
                         </div>
@@ -68,7 +111,7 @@
                         </div>
                         <div class="col-12 col-md-9">
                             <input type="file" id="menu" name="menu" class="form-control-file">
-                            <small class="form-text text-muted"><strong>Notice : </strong> if you upload new picture of menu then will delete old one</small>
+                            <small class="form-text text-muted"><strong>Notice : </strong> if you upload new picture of menu then will delete old one and replace it for new one</small>
                             @error('menu')
                                 <small class="form-text text-danger">{{$message}}</small>
                             @enderror

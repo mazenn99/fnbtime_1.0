@@ -40,6 +40,32 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
+                            <label for="manager_number" class=" form-control-label">Manager Number</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="manager_number" value="{{old('manager_number')}}" name="manager_number"
+                                   placeholder="Please Enter the manager number"
+                                   class="form-control" >
+                            @error('manager_number')
+                                <small class="form-text text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="manager_email" class=" form-control-label">Manager Email</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="manager_email" value="{{old('manager_email')}}" name="manager_email"
+                                   placeholder="Please enter the manager email"
+                                   class="form-control" >
+                            @error('manager_email')
+                                <small class="form-text text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
                             <label for="phone" class=" form-control-label">Phone Number</label>
                         </div>
                         <div class="col-12 col-md-9">

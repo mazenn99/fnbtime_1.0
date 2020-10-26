@@ -16,7 +16,22 @@
                                 </a>
                             </div>
                         </div>
+                        
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item">
+                                <a href="#"><h2 class="number">{{\App\Model\ContractRestaurant::count()}}</h2>
+                                    <span class="desc">Contracts</span> <br>
+                                    Approved : {{\App\Model\ContractRestaurant::where('approve_at' , '!=' , 'NULL')->count()}} 
+                                    <br>
+                                    Not Approved : {{\App\Model\ContractRestaurant::whereNull('approve_at')->count()}}
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-bookmark"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     @endif
+                    
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item">
                             <a href="{{route('restaurant.index')}}"><h2 class="number">{{\App\Model\Restaurant::count()}}</h2>

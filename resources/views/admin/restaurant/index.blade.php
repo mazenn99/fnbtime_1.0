@@ -18,10 +18,13 @@
                         <th>name</th>
                         <th>country</th>
                         <th>city</th>
+                        <th>Manager Number</th>
+                        <th>Manager Email</th>
 {{--                        <th>type food</th>--}}
                         <th>Restaurant number</th>
                         <th>Added At</th>
                         <th>All Booking</th>
+                        <th>All Visitors</th>
                         <th class="text-right">Action</th>
                     </tr>
                     </thead>
@@ -29,13 +32,16 @@
                     @foreach($restaurants as $restaurant)
                         <tr>
                             <td>{{$restaurant->id}}</td>
-                            <td>{{$restaurant->name}}</td>
+                            <td><a href="{{route('users_restaurant.show' , $restaurant->id)}}" target='_blank'>{{$restaurant->name}}</a></td>
                             <td>{{$restaurant->country->name}}</td>
                             <td>{{$restaurant->city->name}}</td>
+                            <td>{!!$restaurant->manager_number ?? '<span class="text-danger">No Number</span>'!!}</td>
+                            <td>{!!$restaurant->manager_email ?? '<span class="text-danger">No Email</span>'!!}</td>
 {{--                            <td>{{$restaurant->type_food}}</td>--}}
                             <td>{{$restaurant->number}}</td>
                             <td>{{$restaurant->created_at}}</td>
                             <td>{{\App\Model\Booking::where('res_id' , $restaurant->id)->count()}}</td>
+                            <td>{{$restaurant->views}}</td>
                             <td>
                                 <a href="{{route('restaurant.edit' , $restaurant->id)}}"
                                    class="btn btn-sm btn-outline-primary">Edit</a>

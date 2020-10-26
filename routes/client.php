@@ -46,13 +46,20 @@ Route::namespace('Home')->group(function() {
     Route::post('saveRestaurant' , 'HomePageController@saveToFavorite')->name('favorite');
     Route::post('deleteRes' , 'HomePageController@deleteFav')->name('del-fav');
 
-Route::get('api/restaurant', 'MapController@Get_ById');
+        ###################################### Contract Agreemnt #########################################
+        Route::get('contract/restaurant/{hash}' , 'ContractController@contractPage')->name('contact-page');
+        Route::post('contract/restaurant' , 'ContractController@submitContract')->name('contract-approve');
+        ###################################### Contract Agreemnt #########################################
 
-Route::get('api/restaurants/query', 'MapController@Get_Restaurants');
 
-Route::get('api/restaurant/city', 'MapController@Get_Restaurants');
 
-Route::get('images', 'MapController@Get_image');
+    Route::get('api/restaurant', 'MapController@Get_ById');
+    
+    Route::get('api/restaurants/query', 'MapController@Get_Restaurants');
+    
+    Route::get('api/restaurant/city', 'MapController@Get_Restaurants');
+    
+    Route::get('images', 'MapController@Get_image');
 
 
 });

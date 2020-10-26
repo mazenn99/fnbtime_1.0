@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\CreateRestaurantRequest;
 use App\Model\Restaurant;
+use App\Model\ContractRestaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,6 +42,7 @@ class RestaurantController extends Controller
      */
     public function store(CreateRestaurantRequest $request)
     {
+        $hash = bin2hex(random_bytes(25));
         $res = Restaurant::create([
             'name' => $request->input('name'),
             'country_id' => $request->input('country'),
@@ -48,10 +50,14 @@ class RestaurantController extends Controller
             'type_food' => $request->input('type_food'),
             'number' => $request->input('phone'),
             'description' => $request->input('description'),
+            'approved'   => '0',
+            'manager_number' => $request->input('manager_number'),
+            'manager_email'  => $request->input('manager_email'),
             'menu' => $this->saveImage($request->file('menu'), 'images/res-images/menu'),
             'map_url' => $request->input('location')
         ]);
         $res->appsDelivery()->create(['mrsool' => $request->input('mrsool'), 'logmaty' => $request->input('logmaty'), 'hungerStation' => $request->input('hungerStation'), 'jahiz' => $request->input('jahiz'), 'careemNow' => $request->input('careemNow')]);
+        $res->contract()->create(['hash' => $hash , 'approve_at	' => NULL , 'signed_name' => NULL]);
         return redirect()->to(route('restaurant.index'))->with(['success' => "Added Restaurant $request->name Successfully"]);
     }
 
@@ -85,8 +91,20 @@ class RestaurantController extends Controller
      * @param Restaurant $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateRestaurantRequest $request, Restaurant $restaurant)
+    public function update(Request $request, Restaurant $restaurant)
     {
+        $request->validate([
+            'name'           => 'required|string',
+            'country'        => 'required|numeric',
+            'city'           => 'required|numeric',
+            'type_food'      => 'required',
+            'phone'          => 'required|numeric',
+            'description'    => 'required|string',
+            'menu'           => 'mimes:jpg,jpeg,png,pdf',
+            'location'       => 'required|url',
+            'manager_number' => 'nullable|numeric|min:8' , 
+            'manager_email'  => 'nullable|email|max:100'
+        ]);
         if ($request->hasFile('menu')) {
             $newMenu = $request->file('menu');
             if (!(empty($restaurant->picture))) {
@@ -104,6 +122,8 @@ class RestaurantController extends Controller
             'type_food' => $request->input('type_food'),
             'number' => $request->input('phone'),
             'description' => $request->input('description'),
+            'manager_email' => $request->input('manager_email'),
+            'manager_number' => $request->input('manager_number'),
             'picture' => $request['menu'] != '' ? $request['menu'] : $restaurant->picture,
             'map_url' => $request->input('location')
         ]);
@@ -145,8 +165,11 @@ class RestaurantController extends Controller
                             <td>'.  $res->name . '         </td>
                             <td>' . $res->country->name . '</td>
                             <td>' . $res->city->name . '   </td>
+                            <td>' . $res->manager_number .'</td>
+                            <td>' . $res->manager_email .' </td>
                             <td>' . $res->number . '       </td>
                             <td>' . $res->created_at . '   </td>
+                            <td>' . $res->views . '        </td>
                             <td>' . \App\Model\Booking::where('res_id' , $res->id)->count() .'</td>
                             <td>
                                 <a href=' . route('restaurant.edit', $res->id) . '

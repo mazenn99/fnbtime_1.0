@@ -31,7 +31,7 @@
                     @foreach($users as $user)
                         <tr>
                             <td>{{$user->id}}</td>
-                            <td>{{$user->email}}</td>
+                            <td><a href="{{route('spicific-users' , $user->id)}}" target="_blank">{{$user->email}}</a></td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->phone}}</td>
                             <td>{{$user->country->name}}</td>
@@ -45,6 +45,7 @@
                                 <form action="{{route('users.destroy' , $user->id)}}" method="POST"
                                       class="d-inline-block">
                                     @csrf
+                                    @method('DELETE')
                                     <button onclick="return confirm('Are You Sure')"
                                             class="btn btn-sm btn-outline-danger">Delete
                                     </button>

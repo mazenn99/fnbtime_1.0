@@ -101,45 +101,61 @@
                 <div class='col-3'>
                     Logmaty App
                 </div>
+             <?php if($contract->restaurant->appsDelivery->logmaty != null): ?>
                 <div class='col-9'>
                     <a href='<?php echo e($contract->restaurant->appsDelivery->logmaty); ?>' target='_blank'>Click</a>
                 </div>
+            <?php else: ?> <p class='text-danger'> Not support </p>  
+            <?php endif; ?>    
             </div>
+            
             
             <div class='row my-3'>
                 <div class='col-3'>
                     Mrsool
                 </div>
+            <?php if($contract->restaurant->appsDelivery->mrsool != null): ?>
                 <div class='col-9'>
                     <a href='<?php echo e($contract->restaurant->appsDelivery->mrsool); ?>' target='_blank'>Click</a>
                 </div>
+            <?php else: ?> <p class='text-danger'> Not support </p>  
+            <?php endif; ?> 
             </div>
             
             <div class='row my-3'>
                 <div class='col-3'>
                     Hungerstation
                 </div>
-                <div class='col-9'>
-                    <a href='<?php echo e($contract->restaurant->appsDelivery->jahiz); ?>' target='_blank'>Click</a>
-                </div>
+            <?php if($contract->restaurant->appsDelivery->jahiz !=null ): ?>   
+            <div class='col-9'>
+            <a href='<?php echo e($contract->restaurant->appsDelivery->jahiz); ?>' target='_blank'>Click</a>
+            </div>
+            <?php else: ?> <p class='text-danger'> Not support </p>
+            <?php endif; ?> 
             </div>
             
             <div class='row my-3'>
                 <div class='col-3'>
                     careemNow
                 </div>
+            <?php if($contract->restaurant->appsDelivery->hungerStation !=null): ?>
                 <div class='col-9'>
                     <a href='<?php echo e($contract->restaurant->appsDelivery->hungerStation); ?>' target='_blank'>Click</a>
                 </div>
+            <?php else: ?> <p class='text-danger'> Not support </p>
+            <?php endif; ?> 
             </div>
             
             <div class='row my-3'>
                 <div class='col-3'>
-                    Jahiz
+                    careemNow
                 </div>
+            <?php if($contract->restaurant->appsDelivery->careemNow != null): ?>
                 <div class='col-9'>
                     <a href='<?php echo e($contract->restaurant->appsDelivery->careemNow); ?>' target='_blank'>Click</a>
                 </div>
+             <?php else: ?> <p class='text-danger'> Not support </p>
+            <?php endif; ?> 
             </div>
             
             <hr>

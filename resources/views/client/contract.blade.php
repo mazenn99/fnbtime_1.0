@@ -95,45 +95,61 @@
                 <div class='col-3'>
                     Logmaty App
                 </div>
+             @if ($contract->restaurant->appsDelivery->logmaty != null)
                 <div class='col-9'>
                     <a href='{{$contract->restaurant->appsDelivery->logmaty}}' target='_blank'>Click</a>
                 </div>
+            @else <p class='text-danger'> Not support </p>  
+            @endif    
             </div>
+            
             
             <div class='row my-3'>
                 <div class='col-3'>
                     Mrsool
                 </div>
+            @if ($contract->restaurant->appsDelivery->mrsool != null)
                 <div class='col-9'>
                     <a href='{{$contract->restaurant->appsDelivery->mrsool}}' target='_blank'>Click</a>
                 </div>
+            @else <p class='text-danger'> Not support </p>  
+            @endif 
             </div>
             
             <div class='row my-3'>
                 <div class='col-3'>
                     Hungerstation
                 </div>
-                <div class='col-9'>
-                    <a href='{{$contract->restaurant->appsDelivery->jahiz}}' target='_blank'>Click</a>
-                </div>
+            @if($contract->restaurant->appsDelivery->jahiz !=null )   
+            <div class='col-9'>
+            <a href='{{$contract->restaurant->appsDelivery->jahiz}}' target='_blank'>Click</a>
+            </div>
+            @else <p class='text-danger'> Not support </p>
+            @endif 
             </div>
             
             <div class='row my-3'>
                 <div class='col-3'>
                     careemNow
                 </div>
+            @if($contract->restaurant->appsDelivery->hungerStation !=null)
                 <div class='col-9'>
                     <a href='{{$contract->restaurant->appsDelivery->hungerStation}}' target='_blank'>Click</a>
                 </div>
+            @else <p class='text-danger'> Not support </p>
+            @endif 
             </div>
             
             <div class='row my-3'>
                 <div class='col-3'>
-                    Jahiz
+                    careemNow
                 </div>
+            @if($contract->restaurant->appsDelivery->careemNow != null)
                 <div class='col-9'>
                     <a href='{{$contract->restaurant->appsDelivery->careemNow}}' target='_blank'>Click</a>
                 </div>
+             @else <p class='text-danger'> Not support </p>
+            @endif 
             </div>
             
             <hr>

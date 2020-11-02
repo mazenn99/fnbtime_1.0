@@ -32,7 +32,7 @@
                     @foreach($restaurants as $restaurant)
                         <tr>
                             <td>{{$restaurant->id}}</td>
-                            <td><a href="{{route('users_restaurant.show' , $restaurant->id)}}" target='_blank'>{{$restaurant->name}}</a></td>
+                            <td><a href="{{route('users_restaurant.show' , $restaurant->id)}}" target='_blank'>@if($restaurant->approved == 1) <i class="fa fa-check-circle" aria-hidden="true"></i> @else <i class="fa fa-times-circle" style='color:red' aria-hidden="true"></i> @endif | {{$restaurant->name}}  </a></td>
                             <td>{{$restaurant->country->name}}</td>
                             <td>{{$restaurant->city->name}}</td>
                             <td>{!!$restaurant->manager_number ?? '<span class="text-danger">No Number</span>'!!}</td>

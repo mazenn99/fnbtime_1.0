@@ -31,7 +31,7 @@
                     <?php $__currentLoopData = $restaurants; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $restaurant): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
                             <td><?php echo e($restaurant->id); ?></td>
-                            <td><a href="<?php echo e(route('users_restaurant.show' , $restaurant->id)); ?>" target='_blank'><?php echo e($restaurant->name); ?></a></td>
+                            <td><a href="<?php echo e(route('users_restaurant.show' , $restaurant->id)); ?>" target='_blank'><?php if($restaurant->approved == 1): ?> <i class="fa fa-check-circle" aria-hidden="true"></i> <?php else: ?> <i class="fa fa-times-circle" style='color:red' aria-hidden="true"></i> <?php endif; ?> | <?php echo e($restaurant->name); ?>  </a></td>
                             <td><?php echo e($restaurant->country->name); ?></td>
                             <td><?php echo e($restaurant->city->name); ?></td>
                             <td><?php echo $restaurant->manager_number ?? '<span class="text-danger">No Number</span>'; ?></td>

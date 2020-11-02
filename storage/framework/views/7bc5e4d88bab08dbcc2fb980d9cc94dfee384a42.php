@@ -27,7 +27,8 @@
                                 <p>You have <strong><?php echo e(\App\Model\Booking::where('status' , 0)->count()); ?></strong> Booking waiting approve</p>
                             </div>
                             <?php $__currentLoopData = \App\Model\Booking::where('status' , 0)->orderBy('id' , 'DESC')->limit(5)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lastBooking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="notifi__item">
+                                <a href="<?php echo e(route("booking.index")); ?>">
+                                    <div class="notifi__item"> 
                                     <div class="bg-c1 img-cir img-40">
                                         <i class="zmdi zmdi-book"></i>
                                     </div>
@@ -36,6 +37,7 @@
                                         <span class="date"><?php echo e(\Carbon\Carbon::parse($lastBooking->occasion_date)->toDateString()); ?></span>
                                     </div>
                                 </div>
+                                </a>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <div class="notifi__footer">
                                 <a href="<?php echo e(route('booking.index')); ?>">All reservation</a>

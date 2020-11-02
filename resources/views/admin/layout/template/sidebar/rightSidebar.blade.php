@@ -27,7 +27,8 @@
                                 <p>You have <strong>{{\App\Model\Booking::where('status' , 0)->count()}}</strong> Booking waiting approve</p>
                             </div>
                             @foreach(\App\Model\Booking::where('status' , 0)->orderBy('id' , 'DESC')->limit(5)->get() as $lastBooking)
-                                <div class="notifi__item">
+                                <a href="{{route("booking.index")}}">
+                                    <div class="notifi__item"> 
                                     <div class="bg-c1 img-cir img-40">
                                         <i class="zmdi zmdi-book"></i>
                                     </div>
@@ -36,6 +37,7 @@
                                         <span class="date">{{\Carbon\Carbon::parse($lastBooking->occasion_date)->toDateString()}}</span>
                                     </div>
                                 </div>
+                                </a>
                             @endforeach
                             <div class="notifi__footer">
                                 <a href="{{route('booking.index')}}">All reservation</a>

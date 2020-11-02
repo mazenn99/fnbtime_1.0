@@ -54,9 +54,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'password_confirmation' => ['required' , 'min:8'],
-            #'country' => ['required'],
-            #'city' => ['required'],
-            'phone' => ['required' , 'max:16']
+            'country' => ['required'],
+            'city' => ['required'],
+            'phone' => ['required' , 'max:16'],
+            'interested' => 'array'
         ]);
     }
 
@@ -68,19 +69,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if(isset($data['subscription'])) {
-            $sub = 1;
-        } else {
-            $sub = 0;
-        }
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'phone' => $data['phone'],
-            'country_id' => $data['country'],
-            'city_id' => $data['city'],
-            'subscription' => $sub
+            'name'          => $data['name'],
+            'email'         => $data['email'],
+            'password'      => Hash::make($data['password']),
+            'phone'         => $data['phone'],
+            'country_id'    => $data['country'],
+            'city_id'       => $data['city'],
+            'subscription'  => isset($data['subscription']) ? 1 : 0 ,
+            'interested'    => $data['interest']
         ]);
 
     }

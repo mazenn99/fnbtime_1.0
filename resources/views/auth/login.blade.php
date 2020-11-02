@@ -16,7 +16,7 @@
             <div class="container mt-90 login-page-form">
                 <h1 class="text-center">
                     <span data-class="login" class="selected-form">Login</span> | <span
-                        data-class="signup">Sign up</span>
+                            data-class="signup">Sign up</span>
                 </h1>
                 <form action="{{route('login')}}" class="col-lg-offset-4 col-md-offset-4 login" name="login"
                       method="POST">
@@ -168,10 +168,75 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="checkbox-block font-icon-checkbox mb-10">
                         <input class="checkbox" name="subscription" id="filter_cuisine" type="checkbox">
                         <label for="filter_cuisine">Subscription to Our Newsletter ?</label>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <hr>
+                        </div>
+                    </div>
+                    Tell us what's you interested
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="burger" value="Burger">
+                            <label class="form-check-label" for="burger">burger</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="pizza" value="Pizza">
+                            <label class="form-check-label" for="pizza">pizza</label>
+
+                            <input class="form-check-input" name="interest[]"  type="checkbox" id="chinese" value="chinese">
+                            <label class="form-check-label" for="chinese">chinese</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="sweet" value="sweet">
+                            <label class="form-check-label" for="sweet">sweet</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="indian" value="indian">
+                            <label class="form-check-label" for="indian">indian</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="meat" value="meat">
+                            <label class="form-check-label" for="meat">meat</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="chicken" value="chicken">
+                            <label class="form-check-label" for="chicken">chicken</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="eggs" value="eggs">
+                            <label class="form-check-label" for="eggs">eggs</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="fish" value="fish">
+                            <label class="form-check-label" for="fish">fish</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="seafood" value="seafood">
+                            <label class="form-check-label" for="seafood">seafood</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="poultry" value="poultry">
+                            <label class="form-check-label" for="poultry">poultry</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="legumes" value="legumes">
+                            <label class="form-check-label" for="legumes">legumes</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="vegetables" value="vegetables">
+                            <label class="form-check-label" for="vegetables">vegetables</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="rice" value="rice">
+                            <label class="form-check-label" for="rice">rice</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="salad" value="salad">
+                            <label class="form-check-label" for="salad">salad</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="sandwiches" value="sandwiches">
+                            <label class="form-check-label" for="sandwiches">sandwiches</label>
+
+                            <input class="form-check-input" name="interest[]" type="checkbox" id="snack" value="snack">
+                            <label class="form-check-label" for="snack">snack</label>
+
+
+                        </div>
+                    </div>
+
                     <button class="btn btn-primary mb-10">Sign-up</button>
                 </form>
             </div>

@@ -4,11 +4,9 @@ namespace App;
 
 use App\Model\City;
 use App\Model\Country;
-use
-    Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use phpDocumentor\Reflection\Types\Nullable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -20,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'country_id', 'city_id', 'subscription'
+        'name', 'email', 'password', 'phone', 'interested' , 'country_id', 'city_id', 'subscription'
     ];
 
     /**
@@ -39,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'interested' => 'array'
     ];
 
     public function country()

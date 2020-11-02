@@ -8,7 +8,6 @@
             @if(empty(Auth()->user()->email_verified_at))
                 <div class="alert alert-dismissible text-center alert-success margin-0">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-
                     {!!  "Please Verify Email Address " . "<strong>".Auth()->user()->email."</strong>" !!}
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
